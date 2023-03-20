@@ -14,7 +14,7 @@ export interface Config {
 export type SupportLanguageKeys = keyof typeof supportedLanguages
 export type SupportRegionKeys = keyof typeof supportedRegions
 
-export type APIRegions = 'default' | 'free'
+export type APIRegions = 'default' | 'free' | 'deeplx' | 'custom'
 
 export type TranslateResult = {
   translations: Array<{

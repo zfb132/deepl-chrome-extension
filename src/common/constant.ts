@@ -30,4 +30,6 @@ export const supportedLanguages = {
 export const supportedRegions = {
   default: 'DeepL Pro',
   free: '免费',
+  deeplx: 'DeepL X',
+  custom: '自定义 Url',
 }

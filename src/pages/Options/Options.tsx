@@ -27,7 +27,7 @@ const InputGroup = styled('div')`
 const Options: React.FC = () => {
   const [targetLang, setTargetLang] = useState('ZH')
   const [token, setToken] = useState('')
-  const [region, setRegion] = useState<APIRegions>('default')
+  const [region, setRegion] = useState<APIRegions>('deeplx')
   const [ocrSecretId, setOCRSecretId] = useState('')
   const [ocrSecretKey, setOCRSecretKey] = useState('')
   const [ocrRegion, setOCRRegion] = useState<OcrRegionKeys>('ap-shanghai')
@@ -54,8 +54,12 @@ const Options: React.FC = () => {
   const onTestToken: MouseEventHandler = (e) => {
     e.preventDefault()
 
-    if (!token) {
-      enqueueSnackbar('请填入 API Token', { variant: 'warning' })
+    if (!token && region !== 'deeplx') {
+      if (region === 'custom') {
+        enqueueSnackbar('请填入 API Url', { variant: 'warning' })
+      } else {
+        enqueueSnackbar('请填入 API Token', { variant: 'warning' })
+      }
       return
     }
 
@@ -153,7 +157,7 @@ const Options: React.FC = () => {
               </select>
             </OptionSection>
 
-            <OptionSection title={'API 秘钥'}>
+            <OptionSection title={'API 秘钥 ( 或 Url )'}>
               <input
                 tw="rounded-md w-full"
                 type="text"
@@ -161,6 +165,12 @@ const Options: React.FC = () => {
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
               />
+
+              <div tw="text-sm text-gray-600">
+                1. 若选择自定义Url，此处填入自行搭建的API Url，例如： <br />
+                https://example.com/translate <br />
+                2. 若选择Deepl X，此处填入任意非空字符串即可
+              </div>
             </OptionSection>
 
             <OptionSection title={'腾讯云 OCR'}>
