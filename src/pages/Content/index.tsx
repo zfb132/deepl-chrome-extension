@@ -24,6 +24,7 @@ let isAppAttached = false
 let lastSelection: TextSelection | undefined
 let highlighter: any
 let styleCache: ReturnType<typeof createCache>
+let highlightText = true
 
 const main = async () => {
   const container = document.createElement('div')
@@ -57,6 +58,8 @@ const main = async () => {
       cc(chrome.storage.sync, 'get').then((config: Partial<Config>) => {
         const hoverButton =
           config.hoverButton === undefined || config.hoverButton
+        highlightText =
+          config.highlightText === undefined || config.highlightText
 
         if (hoverButton) {
           document.querySelector<HTMLBodyElement>('body')?.append(iconContainer)
@@ -104,7 +107,9 @@ const onMouseUp = (e: MouseEvent) => {
         )
       }
 
-      highlightSelection(lastSelection.selection)
+      if (highlightText) {
+        highlightSelection(lastSelection.selection)
+      }
 
       addTranslateJob({
         type: 'translate',

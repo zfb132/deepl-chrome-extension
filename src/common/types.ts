@@ -9,6 +9,7 @@ export interface Config {
   ocrSecretKey?: string
   ocrRegion?: OcrRegionKeys
   hoverButton?: boolean
+  highlightText?: boolean
 }
 
 export type SupportLanguageKeys = keyof typeof supportedLanguages
