@@ -1,11 +1,11 @@
 {
   "name": "deepl-chrome-extension",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "DeepL translate for Chrome",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/geekdada/deepl-chrome-extension"
+    "url": "https://github.com/zfb132/deepl-chrome-extension"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node scripts/webserver.js",
