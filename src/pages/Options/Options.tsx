@@ -32,6 +32,7 @@ const Options: React.FC = () => {
   const [ocrSecretKey, setOCRSecretKey] = useState('')
   const [ocrRegion, setOCRRegion] = useState<OcrRegionKeys>('ap-shanghai')
   const [hoverButton, setHoverButton] = useState(true)
+  const [highlightText, setHighlightText] = useState(true)
   const { enqueueSnackbar } = useSnackbar()
 
   const onSubmit: FormEventHandler = (e) => {
@@ -45,6 +46,7 @@ const Options: React.FC = () => {
         ocrSecretKey,
         ocrRegion,
         hoverButton,
+        highlightText,
       })
 
       enqueueSnackbar('保存成功', { variant: 'success' })
@@ -81,6 +83,8 @@ const Options: React.FC = () => {
         setOCRSecretKey(config.ocrSecretKey)
       if (config.ocrRegion !== undefined) setOCRRegion(config.ocrRegion)
       if (config.hoverButton !== undefined) setHoverButton(config.hoverButton)
+      if (config.highlightText !== undefined)
+        setHighlightText(config.highlightText)
     })
   }, [])
 
@@ -219,6 +223,13 @@ const Options: React.FC = () => {
                   onChange={(e) => setHoverButton(e.target.checked)}
                 />
                 <label htmlFor="hover-button">开启网页悬浮按钮</label>
+                <input
+                  type="checkbox"
+                  id="highlight-text"
+                  checked={highlightText}
+                  onChange={(e) => setHighlightText(e.target.checked)}
+                />
+                <label htmlFor="highlight-text">高亮已翻译文本</label>
               </InputGroup>
             </OptionSection>
 
